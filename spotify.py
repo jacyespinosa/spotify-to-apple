@@ -37,3 +37,20 @@ class SpotifyAPI(object):
         return {
             "grant_type": "client_credentials"
         }
+
+    def perform_auth(self):
+        token_url = self.token_url
+        token_data = self.get_token_data()
+        token_header = self.get_token_header()
+        r = requests.post(token_url, data=token_data, headers=token_header)
+
+        if r.status_code in range(200, 299):
+            data = r.json()
+            now = datetime.now()
+            access_token = data['access_token']
+            expires_in = data['expires_in']
+            expires = now + timedelta(seconds=expires_in)
+            self.access_token = access_token
+            self.access_token_expires = expires
+            self.access_token_did_expire = expires < now
+            return True
