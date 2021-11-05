@@ -23,3 +23,9 @@ class SpotifyAPI(object):
         client_creds = f"{client_id}:{client_secret}"
         client_creds_b64 = base64.b64encode(client_creds.encode())
         return client_creds_b64.decode()
+
+    def get_token_header(self):
+        client_creds_b64 = self.get_client_credentials()
+        return {
+            "Authorization": f"Basic {client_creds_b64}"
+        }
