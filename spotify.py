@@ -4,6 +4,9 @@ import requests
 
 '''Client ID and Client Secret can be retrieved from the user's Spotify account.'''
 class SpotifyAPI(object):
+    access_token = None
+    access_token_expires = datetime.now()
+    access_token_did_expire = True
     client_id = None
     client_secret = None
     token_url = "https://accounts.spotify.com/api/token"
@@ -28,4 +31,9 @@ class SpotifyAPI(object):
         client_creds_b64 = self.get_client_credentials()
         return {
             "Authorization": f"Basic {client_creds_b64}"
+        }
+
+    def get_token_data(self):
+        return {
+            "grant_type": "client_credentials"
         }
