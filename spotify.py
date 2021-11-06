@@ -1,8 +1,13 @@
 from datetime import datetime, timedelta
+from urllib.parse import urlencode
 import base64
 import requests
 
 '''Client ID and Client Secret can be retrieved from the user's Spotify account.'''
+client_id = "ENTER CLIENT ID"
+client_secret = "ENTER CLIENT SECRET"
+
+
 class SpotifyAPI(object):
     access_token = None
     access_token_expires = datetime.now()
@@ -54,3 +59,45 @@ class SpotifyAPI(object):
             self.access_token_expires = expires
             self.access_token_did_expire = expires < now
             return True
+
+
+    def get_spotify_tracks(self):
+        spotify = SpotifyAPI(client_id, client_secret)
+        spotify.perform_auth()
+
+        access_token = spotify.access_token
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+
+        finished = False
+        OFFSET = 0
+        playlist = []
+
+        while not finished:
+            playlist_id = "ENTER PLAYLIST ID"
+            endpoint = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+            data = urlencode({"offset": OFFSET, "limit": 100})
+            look_up_url = f"{endpoint}?{data}"
+            r = requests.get(look_up_url, headers=headers)
+            r.raise_for_status()
+
+            playlist_info = r.json()
+
+            total_tracks = playlist_info['total']
+            if total_tracks == len(playlist):
+                finished = True
+
+            else:
+                for track_info in playlist_info['items']:
+                    artist = track_info['track']['artists'][0]['name']
+                    song = track_info['track']['name']
+                    track = {f"{artist}": f"{song}"}
+                    playlist.append(track)
+
+            OFFSET += 100
+
+        return playlist
+
+s = SpotifyAPI.get_spotify_tracks(SpotifyAPI)
