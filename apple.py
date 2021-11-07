@@ -85,3 +85,12 @@ class AppleMusic:
             r = requests.get(url, headers=self.get_authorization())
             r.raise_for_status()
             results = r.json()
+
+            try:
+                song_id = results['results']['songs']['data'][0]['id']
+                self.list_of_track_id.append(song_id)
+            except KeyError:
+                print(f'{song_name} is not available on Apple Music.')
+                continue
+
+        return self.list_of_track_id
