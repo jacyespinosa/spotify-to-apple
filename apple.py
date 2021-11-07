@@ -1,7 +1,10 @@
 import datetime
 from dateutil.relativedelta import *
 
+from urllib.parse import urlencode
+
 import jwt
+import requests
 
 
 '''SPOTIFY'''
@@ -59,3 +62,26 @@ class AppleMusic:
         self.token = token if type(token) is not bytes else token.decode()
 
         return self.token
+
+
+    def get_songs_from_spotify(self, playlist):
+        for song in playlist:
+            artist = list(song)[0]
+
+            track_name = list(song.values())[0]
+            track_name = track_name.replace(' ', '+')
+
+            song_name = f'{track_name}'
+
+            params = {
+                'term': f'{song_name}',
+                'limit': 5,
+                'types': 'songs',
+                'with': 'topResults',
+                }
+            apple_data = urlencode(params)
+
+            url = f"https://api.music.apple.com/v1/catalog/us/search?{apple_data}"
+            r = requests.get(url, headers=self.get_authorization())
+            r.raise_for_status()
+            results = r.json()
