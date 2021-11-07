@@ -1,3 +1,9 @@
+import datetime
+from dateutil.relativedelta import *
+
+import jwt
+
+
 '''SPOTIFY'''
 CLIENT_ID = "ENTER CLIENT ID"
 CLIENT_SECRET = "ENTER CLIENT SECRET"
@@ -30,3 +36,26 @@ class AppleMusic:
 
         else:
             return {}
+
+    def get_token(self):
+        # Return existing token if present
+        if self.token is not None:
+            return self.token
+
+        headers = {
+            'alg': 'ES256',
+            'kid': self.apple_key,
+        }
+        time_now = datetime.datetime.now()
+        time_expired = datetime.datetime.now() + relativedelta(months=+6)
+
+        payload = {
+            "iss": self.team_id,
+            "exp": int(time_expired.strftime("%s")),
+            "iat": int(time_now.strftime("%s"))
+        }
+
+        token = jwt.encode(payload, SECRET_KEY, algorithm='ES256', headers=headers)
+        self.token = token if type(token) is not bytes else token.decode()
+
+        return self.token
