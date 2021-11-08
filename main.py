@@ -34,4 +34,26 @@ playlist_response = requests.post(LIBRARY_URL, data=json.dumps(LIBRARY_PAYLOAD),
 playlist_response_json = playlist_response.json()
 
 
+'''ADD TRACKS TO PLAYLIST'''
+PLAYLIST_ID = playlist_response_json['data'][0]['id']
+print(PLAYLIST_ID)
+PLAYLIST_URL = f'https://api.music.apple.com/v1/me/library/playlists/{PLAYLIST_ID}/tracks'
 
+spotify_playlist_length = len(apple.list_of_track_id)
+i = 0
+
+while i < spotify_playlist_length:
+    song_id = get_tracks[i]
+    params = {
+        "data": [
+            {
+                "id": f"{song_id}",
+                "type": "songs"
+            },
+        ]
+    }
+
+    add_tracks = requests.post(PLAYLIST_URL, headers=header, data=json.dumps(params))
+    results = add_tracks.status_code
+
+    i += 1
