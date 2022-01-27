@@ -32,3 +32,30 @@ Step 4: <br>
 <br>
 <br>
 APPPLE MUSIC API:
+<br>
+Step 1:<br>
+  -Just like Spotify, we need to authenticate ourselves to access Apple Music API. 
+  -Again we must need to encode our Apple Key and Apple Team ID by constructing a developer token. <br>
+  Please see https://developer.apple.com/documentation/applemusicapi/getting_keys_and_creating_tokens
+  <br><img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*Sy4_QinB1C0x_5n67U_ZRA.png">
+<br>
+Step 2:
+  -After getting the tokens needed to be passed on as headers. 
+  <br><img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*vf9tY5Q11NDCsSfzhaPQIw.png">
+<br>
+Step 3:
+  -Once authorized to access Apple Music API, we can now use the playlist list that was created in spotify.py, and loop through the list to get the song titles and pass it on the Apple Music API to get the song IDs.
+  -Create a list of song IDs that will be then used later on when we create a new Apple Music playlist.
+  <br><img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*sigXJPZQElxiKUIZXB5UtQ.png">
+  <br>
+Step 4:
+  <br>
+  -The next step is to create a new Apple Music Playlist.
+  <br><img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*7G51p3M0BNsvWapzvCU1kg.png">
+  <br>
+Step 5:
+  <br>
+  -Now that we have a new playlist in Apple Music, we can now add our songs.
+  -Using the list of song IDs from the get_spotify_tracks() method in the apple.py, we can loop through those song IDs and add them to our newly created Apple Music playlist.
+  <br><img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*qMeTk_gK_EsXTEMHbNAi3A.png">
+  
