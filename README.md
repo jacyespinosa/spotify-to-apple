@@ -11,16 +11,19 @@ Step 1: <br>
   -Get authorized to use Spotify API. https://developer.spotify.com/documentation/general/guides/authorization/
   -Requires Client ID and Client Secret Key (retrieved from Spotify Developer Dashboard).
   -The Client ID and Client Secret Key must be b64 encoded.
+  <br>
   <img width="500" alt="image" src="https://miro.medium.com/max/1400/1*m7aF6hjbMBFv_fWqIbDSsQ.png">
   <br>
 Step 2:<br>
   -After encodeing the Client ID and Client Secret Key, we can now add them into our API endpoint request.
+  <br>
   <img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*VQoupHw_33xhOw5I2bQ3wA.png">
 <br>
 Step 3: <br>
   -Access the specific playlist that you want to be transferred to Apple Music.
   -In order to access your playlist ID, just click on the specific playlist, click on the '...', click share and 'Copy link to playlist.'
   -After retrieving the Playlist ID, pass that Playist ID in the endpoint. 
+  <br>
   <img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*iF3cvkytmuEO9cxDG_djfQ.png">
 <br>  
 Step 4: <br>
