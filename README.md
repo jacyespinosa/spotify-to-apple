@@ -36,7 +36,7 @@ APPPLE MUSIC API:
 Step 1:<br>
   -Just like Spotify, we need to authenticate ourselves to access Apple Music API. 
   -Again we must need to encode our Apple Key and Apple Team ID by constructing a developer token. <br>
-  Please see https://developer.apple.com/documentation/applemusicapi/getting_keys_and_creating_tokens
+  Please see <a href="https://developer.apple.com/documentation/applemusicapi/getting_keys_and_creating_tokens">Apple Music API</a>
   <br><img width="500" alt="image" src="https://cdn-images-1.medium.com/max/800/1*Sy4_QinB1C0x_5n67U_ZRA.png">
 <br>
 Step 2:
