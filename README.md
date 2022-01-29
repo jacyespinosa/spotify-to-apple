@@ -8,7 +8,7 @@ Another important keys to get are the Spotify Client ID and Client Secret that y
 
 SPOTIFY API:
 Step 1: <br>
-  -Get authorized to use Spotify API. https://developer.spotify.com/documentation/general/guides/authorization/
+  -Get authorized to use <a href="https://developer.spotify.com/documentation/general/guides/authorization/">Spotify API.<a><br>
   -Requires Client ID and Client Secret Key (retrieved from Spotify Developer Dashboard).
   -The Client ID and Client Secret Key must be b64 encoded.
   <br>
